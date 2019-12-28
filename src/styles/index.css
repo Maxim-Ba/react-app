@@ -10,4 +10,22 @@
   font-style : normal;  
   font-weight : 500;
 }
-@import url(../vendor/normalize.css)
+@import url(../vendor/normalize.css);
+body{
+  background-color: rgb(65, 52, 70);
+
+}
+.root{
+  max-width: 1800px;
+  margin: 0 auto;
+
+}
+.app{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0 auto;
+}
+.right{
+  width: 80%;
+}

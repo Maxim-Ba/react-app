@@ -2,9 +2,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const mege = require('webpack-merge');
 const common = require('./webpack.config.js');
-
 module.exports = mege(common, {
   mode: 'production',
+  node: {
+    fs: 'empty'
+  },
   module: { rules: [
     {
       test: /\.js$/,
@@ -17,7 +19,7 @@ module.exports = mege(common, {
   
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './style/[name].[contenthash].css',
+      filename: './style/index.[contenthash].css',
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
