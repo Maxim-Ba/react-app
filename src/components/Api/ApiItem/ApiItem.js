@@ -4,7 +4,8 @@ class ApiItem extends React.Component{
   render(){
     return(
       <div>
-        DATA
+        <h3>{this.props.title}</h3>
+        <div>{this.props.data}</div>
       </div>)
   }
 }

@@ -12,6 +12,7 @@
 }
 @import url(../vendor/normalize.css);
 body{
+  font-family: Roboto;
   background-color: rgb(65, 52, 70);
 
 }

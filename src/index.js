@@ -9,7 +9,7 @@ const element =
   <div>
     <Header />
     <div className={'app'}>
-        <Nav />
+      <Nav />
       <div className={'right'}>
         <Main />
       </div>
