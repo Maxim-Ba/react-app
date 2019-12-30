@@ -2,3 +2,19 @@
   background-color: rgb(120, 121, 109);
   
 }
+.AboutProject__title{
+  font-size: 2rem;
+  text-align: center;
+  font-weight: normal;
+}
+.AboutProject__description{
+    max-width: 80%;
+    font-size: 1.4rem;
+    line-height: 1.5;
+  
+}
+.AboutProject__container{
+  display: flex;
+  justify-content: space-between;
+
+}

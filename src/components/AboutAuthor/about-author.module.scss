@@ -1,4 +1,29 @@
 .AboutAuthor{
   background-color: rgb(120, 121, 109);
+}
+.AboutAuthor__title{
+  font-size: 2rem;
+  text-align: center;
+  font-weight: normal;
+}
+.AboutAuthor__description{
+  max-width: 60%;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+.AboutAuthor__img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.AboutAuthor__picture{
+  width: 30%;
+  height: 100%;
+  margin-right: 5%;
   
+}
+.AboutAuthor__container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

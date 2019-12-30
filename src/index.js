@@ -5,17 +5,21 @@ import { Main } from './components/Main/Main'
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Nav } from './components/Nav/Nav';
+import { BrowserRouter } from 'react-router-dom';
+
 const element =
-  <div>
-    <Header />
-    <div className={'app'}>
-      <Nav />
-      <div className={'right'}>
-        <Main />
+  <BrowserRouter>
+    <div>
+      <Header />
+      <div className={'app'}>
+        <Nav />
+        <div className={'right'}>
+          <Main />
+        </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
+  </BrowserRouter>
 ReactDom.render(element, document.getElementById('root'))
 
 

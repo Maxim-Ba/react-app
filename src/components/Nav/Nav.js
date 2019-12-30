@@ -5,11 +5,11 @@ class Nav extends React.Component {
   render() {
     return (
       <nav className={style.nav}>
-        <NavItem title={'Link1'} />
-        <NavItem title={'Link2'} />
-        <NavItem title={'Link3'} />
-        <NavItem title={'Link4'} />
-        <NavItem title={'Link5'} />
+        <NavItem title={'Api1'} link={'/Api/Api1'}/>
+        <NavItem title={'Api2'} link={'/Api/Api2'}/>
+        <NavItem title={'Api3'} link={'/Api/Api3'}/>
+        <NavItem title={'Api4'} link={'/Api/Api4'}/>
+        <NavItem title={'Api5'} link={'/Api/Api5'}/>
       </nav>)
   }
 }

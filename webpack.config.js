@@ -26,6 +26,7 @@ const postCSSLoader = {
 module.exports = {
   entry: {index:'./src/index.js'},
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js'
   },
@@ -77,6 +78,9 @@ module.exports = {
         loader: 'file-loader?name=./vendor/[name].[ext]'
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     

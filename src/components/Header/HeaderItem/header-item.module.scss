@@ -1,5 +1,15 @@
-.headerItem{
+.header__item{
   font-size: 1.5rem;
   margin: 0;
-  
+  text-decoration: underline;
+  color: black;
+}
+.header__item.header__item_active{
+  text-decoration: unset;
+  text-decoration: none;
+  color: wheat;
+  text-decoration-line: none;
+}
+.header__item:hover{
+  text-decoration: none;
 }
