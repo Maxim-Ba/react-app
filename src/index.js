@@ -6,15 +6,18 @@ import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Nav } from './components/Nav/Nav';
 import { BrowserRouter } from 'react-router-dom';
+import { state } from './redux/state'
 
+const linksNames = state.api.map((item)=>item.name)
+const linksPath = state.api.map((item)=>item.link)
 const element =
   <BrowserRouter>
     <div>
-      <Header />
+      <Header linksNames={linksNames}/>
       <div className={'app'}>
-        <Nav />
+        <Nav linksNames={linksNames} linksPath={linksPath}/>
         <div className={'right'}>
-          <Main />
+          <Main data={state.api}/>
         </div>
       </div>
       <Footer />

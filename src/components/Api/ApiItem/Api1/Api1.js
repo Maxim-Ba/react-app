@@ -1,12 +1,11 @@
 import React from 'react';
 
-class Api1 extends React.Component{
-  constructor(props){
+class Api1 extends React.Component {
+  constructor(props) {
     super(props)
   }
-  render(){
-    console.log(this.props)
-    return(
+  render() {
+    return (
       <div>
         {/* <h3>{this.props.title}</h3>
         <div>{this.props.data}</div> */}
@@ -15,4 +14,4 @@ class Api1 extends React.Component{
   }
 }
 
-export {Api1};
+export { Api1 };

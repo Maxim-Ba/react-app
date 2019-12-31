@@ -7,13 +7,16 @@ import { AboutProject } from '../AboutProject/AboutProject';
 import { Route } from 'react-router-dom';
 
 class Main extends React.Component {
+  constructor(props){
+    super(props)
+  }
   componentDidMount() {
     console.log('componrnt did mount')
   }
   render() {
     return (
       <div className={style.main}>
-        <Route path={'/'||'/Api'} component={Api} />
+        <Route path={'/'||'/Api'} render={()=><Api props={this.props.data}/>} />
         <Route path='/Contacts' component={Contacts} />
         <Route path='/AboutAuthor' component={AboutAuthor} />
         <Route path='/AboutProject' component={AboutProject} />

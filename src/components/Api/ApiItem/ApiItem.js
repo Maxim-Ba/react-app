@@ -9,15 +9,17 @@ import { Api5 } from './Api5/Api5';
 class ApiItem extends React.Component {
   constructor(props){
     super(props)
-    console.log(this.props)
-    this.routeData = [
-      {path:'/Api/Api1', component: <Api1 title={this.props.title} data={this.props.data}/>},
-      {path:'/Api/Api2', component: <Api2 title={this.props.title} data={this.props.data}/>},
-      {path:'/Api/Api3', component: <Api3 title={this.props.title} data={this.props.data}/>},
-      {path:'/Api/Api4', component: <Api4 title={this.props.title} data={this.props.data}/>},
-      {path:'/Api/Api5', component: <Api5 title={this.props.title} data={this.props.data}/>},
-    ];
-    this.routeDataArray = this.routeData.map((item, index)=> <Route path={item.path} render={()=>(item.component)} title={this.props.title} data={this.props.data} key={index}/>)
+    this.data = this.props.data;
+    // this.apiArr =[
+    //     <Api1 title={this.props.title} data={this.props.data}/>,
+    //     <Api2 title={this.props.title} data={this.props.data}/>,
+    //     <Api3 title={this.props.title} data={this.props.data}/>,
+    //     <Api4 title={this.props.title} data={this.props.data}/>,
+    //     <Api5 title={this.props.title} data={this.props.data}/>,
+    //   ]; 
+// * Встроить остальные API
+    this.routeData = this.data.map(item=><Api1 title={item.title} data={item.data}/>)
+    this.routeDataArray = this.data.map((item, index)=><Route path={item.link} render={()=>{return(this.routeData[index])}} key={index}/>)
 
   }
   render() {
@@ -28,5 +30,4 @@ class ApiItem extends React.Component {
     )
   }
 }
-// дописать остальные апи сюда и разобраться как другие пропсы передавать title & data
 export { ApiItem };
