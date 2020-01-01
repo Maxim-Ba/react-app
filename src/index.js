@@ -7,6 +7,7 @@ import { Footer } from './components/Footer/Footer';
 import { Nav } from './components/Nav/Nav';
 import { BrowserRouter } from 'react-router-dom';
 import { state } from './redux/state'
+import { ButtonUp } from './components/Buttons/ButtonUp/ButtonUp';
 
 const linksNames = state.api.map((item)=>item.name)
 const linksPath = state.api.map((item)=>item.link)
@@ -21,7 +22,9 @@ const element =
         </div>
       </div>
       <Footer />
+      
     </div>
+    <ButtonUp/>
   </BrowserRouter>
 ReactDom.render(element, document.getElementById('root'))
 

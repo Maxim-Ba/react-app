@@ -1,0 +1,27 @@
+.buttonUp{
+  opacity: .5;
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  left: 30px;
+  top: 90vh;
+  background-color: rgb(75, 11, 75);
+  z-index: 1000;
+  padding: 0;
+  border: none;
+  border-radius: 30%;
+}
+
+.buttonUp:hover{
+  opacity: unset;
+  box-shadow: 5px 5px 10px black;
+}
+.buttonUp__tiangle{
+  margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 10px solid white;
+  
+}

@@ -19,13 +19,14 @@ body{
 .root{
   max-width: 1800px;
   margin: 0 auto;
-
+  position: relative;
 }
 .app{
   display: flex;
   flex-direction: row;
   width: 100%;
   margin: 0 auto;
+
 }
 .right{
   width: 80%;
