@@ -10,14 +10,12 @@ class Main extends React.Component {
   constructor(props){
     super(props)
   }
-  componentDidMount() {
-    console.log('componrnt did mount')
-  }
+
   render() {
     return (
       <div className={style.main}>
         <Route path={'/'||'/Api'} render={()=><Api props={this.props.data}/>} />
-        <Route path='/Contacts' component={Contacts} />
+        <Route path='/Contacts' render={()=><Contacts sendForm={this.props.sendForm}/>} />
         <Route path='/AboutAuthor' component={AboutAuthor} />
         <Route path='/AboutProject' component={AboutProject} />
       </div>

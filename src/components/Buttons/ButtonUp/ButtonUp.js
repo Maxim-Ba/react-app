@@ -2,15 +2,14 @@ import React from 'react';
 import style from './buttonUp.module.scss';
 
 class ButtonUp extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.onTopOfPage = this.onTopOfPage.bind(this);
-
   }
-  makeVisible(){
-    
+  makeVisible() {
+    // сделать чтобы кнопка показывалась только внизу страницы
   }
-  onTopOfPage(){
+  onTopOfPage() {
     window.scrollTo(0, 0);
 
   }
