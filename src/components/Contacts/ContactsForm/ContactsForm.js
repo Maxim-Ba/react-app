@@ -4,25 +4,26 @@ import {ButtonContacts} from '../../Buttons/ButtonContacts/ButtonContacts';
 class ContactsForm extends React.Component {
   constructor(props) {
     super(props)
-    this.newMessageNameRef = React.createRef();
-    console.log(this.newMessageNameRef)
+    console.log(this.props)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.props.handleChange.bind(this);
   }
-  componentDidMount() {
-    this.newMessageName = this.newMessageNameRef.current.value;
-    console.log(this.newMessageNameRef)
-    console.log(this.newMessageName)
+
+  handleSubmit(event) {
+    event.preventDefault();
   }
+
   render() {
     return (
-      <form className={style.contacts__form}>
+      <form className={style.contacts__form} onSubmit={this.handleSubmit}>
         <label htmlFor='name' className={style.contacts__label}>Имя</label>
-        <input name='name' type='text' className={style.contacts__input} ref={this.newMessageNameRef} onChange={(e) => {this.newMessageNameRef.current.value}}></input>
+        <input placeholder='Ваше имя' name='name' type='text' className={style.contacts__input} onChange={this.handleChange}></input>
         <label htmlFor='email' className={style.contacts__label}>Email</label>
-        <input name='email' type='email' className={style.contacts__input}></input>
+        <input placeholder='Электронная почта' name='email' type='email' className={style.contacts__input} onChange={this.handleChange}></input>
         <label htmlFor='number' className={style.contacts__label}>Телефон</label>
-        <input name='number' type='number' className={style.contacts__input}></input>
+        <input placeholder='Телефонный номер' name='number' type='number' className={style.contacts__input} onChange={this.handleChange}></input>
         <label htmlFor='textarea' className={style.contacts__label}>Сообщение</label>
-        <textarea name='textarea' className={style.contacts__input, style.contacts__textarea}></textarea>
+        <textarea placeholder='Напишите ваше сообщение мне' name='textarea' className={style.contacts__input, style.contacts__textarea} onChange={this.handleChange}></textarea>
         <ButtonContacts sendForm={this.props.sendForm} newMessageName={this.newMessageName}/>
       </form>
     )

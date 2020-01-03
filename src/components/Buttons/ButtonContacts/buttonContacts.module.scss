@@ -1,5 +1,4 @@
 .ButtonContacts{
-  opacity: .5;
   height: 50px;
   background-color: rgb(75, 11, 75);
   z-index: 1000;
@@ -9,6 +8,7 @@
   width: 40%;
   border-radius: 5%;
   color: black;
+  margin-bottom: 40px;
 }
 
 .ButtonContacts:hover{
