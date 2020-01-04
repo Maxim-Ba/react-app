@@ -12,7 +12,7 @@ class Contacts extends React.Component {
         <h3>
           Contacts
         </h3>
-        <ContactsForm handleChange={this.props.handleChange}/>
+        <ContactsForm dispatch={this.props.dispatch}/>
       </section>
     )
   }

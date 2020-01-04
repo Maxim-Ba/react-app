@@ -9,25 +9,25 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from './redux/state'
 import { ButtonUp } from './components/Buttons/ButtonUp/ButtonUp';
 
-const linksNames = store.getState().api.map((item) => item.name)
-const linksPath = store.getState().api.map((item) => item.link)
-const element =
-  <BrowserRouter>
+
+
+let renderEntairTree = (store) =>{
+  const linksNames = store.getState().api.map((item) => item.name)
+  const linksPath = store.getState().api.map((item) => item.link)
+  ReactDom.render(
+    <BrowserRouter>
     <div>
       <Header linksNames={linksNames} />
       <div className={'app'}>
         <Nav linksNames={linksNames} linksPath={linksPath} />
         <div className={'right'}>
-          <Main data={store.getState().api} handleChange={store.handleChange.bind(store)}/>
+          <Main data={store.getState().api} dispatch={store.dispatch.bind(store)}/>
         </div>
       </div>
       <Footer />
     </div>
-    <ButtonUp onTopOfPage={store.onTopOfPage.bind(store)} />
-  </BrowserRouter>
-
-let renderEntairTree = () =>{
-  ReactDom.render(element, document.getElementById('root'))
+    <ButtonUp dispatch={store.dispatch.bind(store)} />
+  </BrowserRouter>, document.getElementById('root'))
 }
 
 renderEntairTree(store)

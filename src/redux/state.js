@@ -1,5 +1,7 @@
+import { contactsReducer } from "./contactsReducer";
+
 let store = {
-    _state : {
+    _state: {
         api: [
             {
                 title: 'Первое Api',
@@ -32,34 +34,29 @@ let store = {
                 link: '/Api/Api5'
             }
         ],
-        formState : {
+        formState: {
             name: '',
             email: '',
             number: '',
             textarea: ''
         }
     },
-    getState(){
+    getState() {
         return this._state;
     },
-    _rerenderEntairTree (){
-        console.log('1')
+    _rerenderEntairTree() {
     },
-    onTopOfPage() {
-        window.scrollTo(0, 0);
+
+    dispatch(action) {
+        this._state.formState = contactsReducer(this._state.formState, action)
+        this._rerenderEntairTree(this)
     },
     
-    handleChange(event) {
-        const target = event.target;
-        const value = target.value
-        const name = target.name;
-        this._state.formState[name]= value;
-        console.log(this._state.formState)
-        this._rerenderEntairTree();
-    },
-    subscribe (observer){
-        this._rerenderEntairTree=observer;
+    subscribe(observer) {
+        this._rerenderEntairTree = observer;
     }
 }
-window.store = store
-export { store };
+
+
+window.store = store;
+export { store, };

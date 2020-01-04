@@ -4,6 +4,7 @@ import style from './buttonUp.module.scss';
 class ButtonUp extends React.Component {
   constructor(props) {
     super(props)
+    this.dispatch = this.props.dispatch;
     this.onTopOfPage = this.onTopOfPage.bind(this);
   }
   makeVisible() {
@@ -11,7 +12,6 @@ class ButtonUp extends React.Component {
   }
   onTopOfPage() {
     window.scrollTo(0, 0);
-
   }
   render() {
     return (

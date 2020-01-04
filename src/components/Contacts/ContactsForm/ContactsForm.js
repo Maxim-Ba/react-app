@@ -1,18 +1,25 @@
 import React from 'react';
 import style from './contacts__form.module.scss';
 import {ButtonContacts} from '../../Buttons/ButtonContacts/ButtonContacts';
+import { actionCreatorInputForm } from  '../../../redux/contactsReducer';
 class ContactsForm extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.props.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-
+  // actionCreatorInputForm(event){
+  //   return {
+  //     type: 'HANDLE_CHANGE',
+  //     event: event
+  //   }
+  // }
   handleSubmit(event) {
     event.preventDefault();
   }
-
+  handleChange(event){
+    return this.props.dispatch(actionCreatorInputForm(event));
+  }
   render() {
     return (
       <form className={style.contacts__form} onSubmit={this.handleSubmit}>
