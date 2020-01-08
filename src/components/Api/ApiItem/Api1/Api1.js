@@ -1,16 +1,43 @@
 import React from 'react';
+import style from './NewsApi.module.scss'
+import { Cards } from './Cards/Cards';
 
 class Api1 extends React.Component {
   constructor(props) {
     super(props)
+    this.onSubmitForm = this.onSubmitForm.bind(this)
+    this.onFindNews = this.onFindNews.bind(this)
+    this.onHandleChange = this.onHandleChange.bind(this)
+    this.inputOfNews = React.createRef()
+  }
+  onSubmitForm(event){
+    event.preventDefault();
+  }
+  onFindNews(){
+    return this.props.findNews(this.inputOfNews.current.value);
+  }
+  onHandleChange(event){
+    return this.props.handleChange(event);
   }
   render() {
     return (
-      <div>
-        {/* <h3>{this.props.title}</h3>
-        <div>{this.props.data}</div> */}
-        <p>123</p>
-      </div>)
+      <section className={style.ApiNews}>
+        <h3 className={style.ApiNews__title}>Newsapi.org</h3>
+        <p className={style.ApiNews__description}>
+          Это Api по поиску новостей.
+          Введите в поле строку по которой будет производиться поист по новостям.
+          Количесво новостей имеет ограничение в 100 штук. 
+        </p>
+        <main className={style.ApiNews__main}>
+          <form className={style.ApiNews__form} onSubmit={this.onSubmitForm}>
+            <div  className={style.ApiNews__inputContainer}>
+              <input className={style.ApiNews__input} ref={this.inputOfNews} type='text' placeholder='Введите название новости' onChange={this.onHandleChange} />
+              <button  className={style.ApiNews__button} onClick={this.onFindNews}>Искать</button>
+            </div>
+          </form>
+        </main>
+        <Cards data={this.props.dataCards}/>
+      </section>)
   }
 }
 

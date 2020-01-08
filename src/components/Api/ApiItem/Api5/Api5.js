@@ -1,20 +1,20 @@
 import React from 'react';
 
-class Api5 extends React.Component{
-  constructor(props){
+class Api5 extends React.Component {
+  constructor(props) {
     super(props)
     this.props = props;
   }
-  componentDidMount(){
+  componentDidMount() {
     console.log(this.props)
   }
-  render(){
-    return(
+  render() {
+    return (
       <div>
-        <h3>{this.props.title}</h3>
-        <div>{this.props.data}</div>
+        <h3>5</h3>
+        <div>5</div>
       </div>)
   }
 }
 
-export {Api5};
+export { Api5 };

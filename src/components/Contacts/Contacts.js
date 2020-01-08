@@ -1,6 +1,6 @@
 import React from 'react';
 import  style  from './contacts.module.scss';
-import { ContactsForm } from './ContactsForm/ContactsForm';
+import { ContainerContactsForm } from './ContactsForm/ContainerContactsForm';
 
 class Contacts extends React.Component {
   constructor(props){
@@ -12,7 +12,7 @@ class Contacts extends React.Component {
         <h3>
           Contacts
         </h3>
-        <ContactsForm dispatch={this.props.dispatch}/>
+        <ContainerContactsForm dispatch={this.props.dispatch}/>
       </section>
     )
   }

@@ -7,7 +7,7 @@ class Api extends React.Component {
   render() {
     return (
       <div>
-        <ApiItem  data={this.props.props} />
+        <ApiItem  data={this.props.props} dispatch={this.props.dispatch}/>
       </div>)
   }
 }

@@ -1,11 +1,13 @@
 import { contactsReducer } from "./contactsReducer";
+import { newsApiReducer } from "./newsApiReducer";
 
 let store = {
     _state: {
         api: [
             {
-                title: 'Первое Api',
-                name: 'Api1',
+                title: 'News Api',
+                name: 'News Api',
+                input: '',
                 data: { data: 'DATA' },
                 link: '/Api/Api1'
             },
@@ -39,24 +41,27 @@ let store = {
             email: '',
             number: '',
             textarea: ''
-        }
+        },
     },
     getState() {
         return this._state;
     },
-    _rerenderEntairTree() {
+    _callSubscriber() {
     },
 
     dispatch(action) {
         this._state.formState = contactsReducer(this._state.formState, action)
-        this._rerenderEntairTree(this)
+
+        this._state.api[0] = newsApiReducer(this._state.api[0], action)
+        this._callSubscriber(this._state)
+        console.log(this._state.api[0])
     },
-    
+
     subscribe(observer) {
-        this._rerenderEntairTree = observer;
+        this._callSubscriber = observer;
     }
 }
 
 
 window.store = store;
-export { store, };
+export { store };

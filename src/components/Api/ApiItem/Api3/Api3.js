@@ -11,8 +11,8 @@ class Api3 extends React.Component{
   render(){
     return(
       <div>
-        <h3>{this.props.title}</h3>
-        <div>{this.props.data}</div>
+        <h3>3</h3>
+        <div>3</div>
       </div>)
   }
 }

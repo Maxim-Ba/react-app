@@ -11,8 +11,8 @@ class Api4 extends React.Component{
   render(){
     return(
       <div>
-        <h3>{this.props.title}</h3>
-        <div>{this.props.data}</div>
+        <h3>4</h3>
+        <div>4</div>
       </div>)
   }
 }

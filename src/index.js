@@ -6,30 +6,32 @@ import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Nav } from './components/Nav/Nav';
 import { BrowserRouter } from 'react-router-dom';
-import { store } from './redux/state'
+import { store } from './redux/redux-store'
 import { ButtonUp } from './components/Buttons/ButtonUp/ButtonUp';
 
 
 
-let renderEntairTree = (store) =>{
-  const linksNames = store.getState().api.map((item) => item.name)
-  const linksPath = store.getState().api.map((item) => item.link)
+let renderEntairTree = (state) =>{
+  
   ReactDom.render(
     <BrowserRouter>
     <div>
-      <Header linksNames={linksNames} />
+      <Header />
       <div className={'app'}>
-        <Nav linksNames={linksNames} linksPath={linksPath} />
+        <Nav />
         <div className={'right'}>
-          <Main data={store.getState().api} dispatch={store.dispatch.bind(store)}/>
+          <Main data={state.api} dispatch={store.dispatch.bind(store)}/>
         </div>
       </div>
       <Footer />
     </div>
-    <ButtonUp dispatch={store.dispatch.bind(store)} />
+    <ButtonUp />
   </BrowserRouter>, document.getElementById('root'))
 }
 
-renderEntairTree(store)
-store.subscribe(renderEntairTree)
-// /*A004D9ED domin*//*A004D9ED domin*/ 
+renderEntairTree(store.getState())
+store.subscribe(() => {
+  let state = store.getState();
+  return renderEntairTree(state);
+});
+
