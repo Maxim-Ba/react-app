@@ -1,22 +1,32 @@
 const HANDLE_CHANGE = 'HANDLE_CHANGE';
 const initialState = {
-  name: '',
-  email: '',
-  number: '',
-  textarea: ''
+  formState: {
+    name: '',
+    email: '',
+    number: '',
+    textarea: ''
+  }
 }
 const actionCreatorInputForm = (event) => ({
   type: HANDLE_CHANGE,
   event: event
 })
 const contactsReducer = (state = initialState, action) => {
-  if (action.type === HANDLE_CHANGE) {
-    const target = action.event.target;
-    const value = target.value;
-    const name = target.name;
-    state[name] = value;
+  switch (action.type) {
+    case HANDLE_CHANGE:
+      const target = action.event.target;
+      const value = target.value;
+      const name = target.name;
+      const stateCopy = {
+        ...state,
+        formState: { ...state.formState }
+      }
+      stateCopy.formState[name] = value;
+      return stateCopy;
+    default:
+      return state
   }
-  return state;
+
 }
 
 export { contactsReducer, actionCreatorInputForm }

@@ -10,7 +10,7 @@ class AboutAuthor extends React.Component {
         </h3>
         <div className={style.AboutAuthor__container}>
           <picture className={style.AboutAuthor__picture}>
-            <img className={style.AboutAuthor__img} src='/src/vendor/img/author-photo.jpg'></img>
+            <img className={style.AboutAuthor__img} src='/src/vendor/img/author-photo.jpg'></img>{/*сделать нормальный путь к картинке*/}
           </picture>
           <p className={style.AboutAuthor__description}>
             Меня зовут Балашов Максим. Я являюсь фронтэнд разработчиком. Со школы всегда любил увлекаться техникой, информатикой и точными науками, и
@@ -18,7 +18,7 @@ class AboutAuthor extends React.Component {
             веб разработки.
           </p>
         </div>
-        
+
       </section>
     )
   }

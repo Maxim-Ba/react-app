@@ -14,8 +14,10 @@ class Main extends React.Component {
   render() {
     return (
       <div className={style.main}>
-        <Route path={'/'||'/Api'} render={()=><Api props={this.props.data} dispatch={this.props.dispatch}/>} />
-        <Route path='/Contacts' render={()=><Contacts dispatch={this.props.dispatch}/>} />
+        {/* <Route path={'/'||'/Api'} render={()=><Api props={this.props.data} dispatch={this.props.dispatch}/>} />
+        <Route path='/Contacts' render={()=><Contacts dispatch={this.props.dispatch}/>} /> */}
+        <Route path={'/'||'/Api'} render={()=><Api />} />
+        <Route path='/Contacts' render={()=><Contacts />} />
         <Route path='/AboutAuthor' component={AboutAuthor} />
         <Route path='/AboutProject' component={AboutProject} />
       </div>

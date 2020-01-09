@@ -21,12 +21,12 @@ class ApiItem extends React.Component {
     // * Встроить остальные API
     // this.routeData = this.data.map(item=><Api1 title={item.title} data={item.data} dispatch={this.dispatch}/>)
     // this.routeDataArray = this.data.map((item, index)=><Route path={item.link} render={()=>{return(this.routeData[index])}} key={index}/>)
-    console.log(this.props)
   }
   render() {
     return (
       <div>
-        <Route path={this.data.link} render={() => <ContainerApi1 title={this.data.title} data={this.data} dispatch={this.dispatch} />} />
+        <Route path={'/Api/Api1'} render={() => <ContainerApi1 />} />
+        {/* <Route path={this.data.link} render={() => <ContainerApi1 title={this.data.title} data={this.data} dispatch={this.dispatch} />} /> */}
         <Route path={'/Api/Api2'} render={() => <Api2 />} />
         <Route path={'/Api/Api3'} render={() => <Api3 />} />
         <Route path={'/Api/Api4'} render={() => <Api4 />} />

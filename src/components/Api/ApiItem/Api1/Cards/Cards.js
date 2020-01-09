@@ -5,25 +5,39 @@ import { Card } from './Card/Card';
 class Cards extends React.Component {
   constructor(props) {
     super(props)
-    this.makeListOfCards = this.makeListOfCards.bind(this)
+    this.func = this.func.bind(this)
   }
-  makeListOfCards(){
-    if (this.props.data.data === 'DATA'){
-      return (<p> Введите что искать в поле</p>)
-    }
-    if ((typeof this.props.data.data) === 'Object') {
-      const arrayOfCards = this.props.data.data.map((item)=>{
-        <Card urlToImage={item.urlToImage} title={item.title} description={item.description} url={item.url} publishedAt={item.publishedAt} key={item.title}/>
-      })
-      return arrayOfCards;
-    } 
+  func(props) {
+    const arr = props.map((element, index) => {
+      return <Card
+        source={element.source.name}
+        title={element.title}
+        description={element.description}
+        urlImage={props.urlToImage}
+        publishedAt={element.publishedAt}
+        url={element.url}
+        key={index} />
+    })
+    console.log(arr)
+    return arr
   }
+
   render() {
-    return (
-      <section className={style.Cards}>
-        {this.makeListOfCards()}
-      </section>)
+    console.log(this.props.news)
+
+    if (this.props.news === 'DATA') {
+      return (
+        <div className={style.Cards}>
+        Введите текст запроса
+        </div>)
+    } else {
+      const arrOfNews = this.func(this.props.news)
+      return (
+        <div className={style.Cards}>
+          {arrOfNews}
+        </div>
+      )
+    }
   }
 }
-
 export { Cards };

@@ -1,26 +1,24 @@
-import React from 'react';
-import { actionCreatorInputForm, actionCreatorFindNews } from '../../../../redux/newsApiReducer';
+import { actionCreatorInputForm, actionCreatorSetNews } from '../../../../redux/newsApiReducer';
 import { Api1 } from './Api1';
+import { connect } from 'react-redux'
 
-class ContainerApi1 extends React.Component {
-  constructor(props) {
-    super(props)
-    this.findNews = this.findNews.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.inputOfNews = React.createRef()
-    console.log(this.props)
-  }
-  findNews(string){
-    return this.props.dispatch(actionCreatorFindNews(string));
-  }
-  handleChange(event){
-    return this.props.dispatch(actionCreatorInputForm(event));
-  }
-  render() {
-    return (
-      <Api1 dataCards={this.props.data} handleChange={this.handleChange} findNews={this.findNews}/>
-      )
+const mapStateToProps = (state) => {
+  return {
+    dataCards: state.api.apiOfNews.data
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleChange: (event) => {
+      const action = actionCreatorInputForm(event)
+      dispatch(action)
+    },
+    findNews: (data) => {
+      const action = actionCreatorSetNews(data)
+      dispatch(action)
+    }
+  }
+}
+const ContainerApi1 = connect(mapStateToProps, mapDispatchToProps)(Api1)
 export { ContainerApi1 };

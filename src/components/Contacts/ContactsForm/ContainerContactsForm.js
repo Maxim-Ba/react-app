@@ -1,23 +1,19 @@
 import React from 'react';
 import { actionCreatorInputForm } from '../../../redux/contactsReducer';
 import { ContactsForm } from './ContactsForm';
-class ContainerContactsForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleChange = this.handleChange.bind(this);
-    this.sendForm = this.sendForm.bind(this);
-  }
-  sendForm() {
-    console.log('кнопка нажата')
-  }
-  handleChange(event) {
-    return this.props.dispatch(actionCreatorInputForm(event));
-  }
-  render() {
-    return (
-      <ContactsForm handleChange={this.handleChange} sendForm={this.sendForm} />
-    )
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state)=>{
+  return{
+    formState:state.formState.formState
   }
 }
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    handleChange: (event)=>{dispatch(actionCreatorInputForm(event))},
+    sendForm: ()=>{console.log('кнопка нажата')},
+  }
+}
+let ContainerContactsForm = connect(mapStateToProps, mapDispatchToProps)(ContactsForm);
 
 export { ContainerContactsForm }
