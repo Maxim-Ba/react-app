@@ -1,10 +1,12 @@
-import { actionCreatorInputForm, actionCreatorSetNews } from '../../../../redux/newsApiReducer';
+import { actionCreatorInputForm, actionCreatorSetNews, actionCreatorToggleIsFeatching } from '../../../../redux/newsApiReducer';
 import { Api1 } from './Api1';
 import { connect } from 'react-redux'
 
+
+
 const mapStateToProps = (state) => {
   return {
-    dataCards: state.api.apiOfNews.data
+    dataCards: state.api.apiOfNews.data,
   }
 }
 
@@ -17,6 +19,9 @@ const mapDispatchToProps = (dispatch) => {
     findNews: (data) => {
       const action = actionCreatorSetNews(data)
       dispatch(action)
+    },
+    toggleIsFetching:(isFetching)=>{
+      dispatch(actionCreatorToggleIsFeatching(isFetching))
     }
   }
 }

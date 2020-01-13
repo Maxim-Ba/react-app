@@ -8,7 +8,6 @@ class Api1 extends React.Component {
   constructor(props) {
     super(props)
     this.onSubmitForm = this.onSubmitForm.bind(this)
-    this.onFindNews = this.onFindNews.bind(this)
     this.onHandleChange = this.onHandleChange.bind(this)
     this.inputOfNews = React.createRef()
     this.getInformation=this.getInformation.bind(this)
@@ -30,24 +29,23 @@ class Api1 extends React.Component {
       '&to=' + _dataTo.toISOString() +
       '&language=' + _language +
       '&pageSize=' + _pageSize;
+    this.props.toggleIsFetching(true)
     axios.get(_queryString + 'q=' + this.inputOfNews.current.value + _queryStringOptions)
       .then(res => {
         const DATA = res.data.articles
+        this.props.toggleIsFetching(false)
         return this.props.findNews(DATA);
       })
       .catch((err) => {
         console.log(err);
+        this.props.toggleIsFetching(false)
         if (err == 'TypeError: Failed to fetch') {
           err = `Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.`;
         }
       });
-
   }
   onSubmitForm(event) {
     event.preventDefault();
-  }
-  onFindNews() {
-    return this.props.findNews(this.inputOfNews.current.value);
   }
   onHandleChange(event) {
     return this.props.handleChange(event);

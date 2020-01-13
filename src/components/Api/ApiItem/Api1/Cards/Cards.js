@@ -1,43 +1,59 @@
 import React from 'react';
 import style from './Cards.module.scss'
-import { Card } from './Card/Card';
+import { PresentationCardsComponent } from './PresentationCardsComponent';
+import { Preloader } from './Preloader/Preloader';
 
 class Cards extends React.Component {
   constructor(props) {
     super(props)
-    this.func = this.func.bind(this)
+    this.pagination = this.pagination.bind(this)
+    this.nameOfClass = this.nameOfClass.bind(this)
+    this.onCurrentPageChange = this.onCurrentPageChange.bind(this)
+    this.showCurrentArticles = this.showCurrentArticles.bind(this)
   }
-  func(props) {
-    const arr = props.map((element, index) => {
-      return <Card
-        source={element.source.name}
-        title={element.title}
-        description={element.description}
-        urlImage={props.urlToImage}
-        publishedAt={element.publishedAt}
-        url={element.url}
-        key={index} />
-    })
-    console.log(arr)
-    return arr
+  onCurrentPageChange(page) {
+    return this.props.setCurrentPage(page)
+  }
+  nameOfClass(page) {
+    return ((
+      this.props.currentPage === page && style.Cards__selectedPage) || style.Cards__unselectedPage)
+  }
+  showCurrentArticles() {
+    const currentArticles = this.props.currentPage * this.props.pageSize
+    const arr = [];
+    for (let index = currentArticles - this.props.pageSize; index < currentArticles; index++) {
+      arr.push(this.props.news[index])
+    }
+    const newArr = arr.filter((i) => { return i !== undefined })
+    return newArr
+  }
+  pagination() {
+    const articlesCount = Math.ceil(this.props.totalArticlesCount / this.props.pageSize)
+    const pages = []
+    for (let index = 1; index < articlesCount; index++) {
+      pages.push(index)
+    }
+    return (
+      <div className={style.Cards__wrapper}>
+        {pages.map((page, key) => {
+          return <p className={this.nameOfClass(page)} key={key}
+            onClick={() => { this.onCurrentPageChange(page) }}>
+            {page}
+          </p>
+        })}
+      </div>
+    )
   }
 
   render() {
-    console.log(this.props.news)
-
-    if (this.props.news === 'DATA') {
-      return (
-        <div className={style.Cards}>
-        Введите текст запроса
-        </div>)
-    } else {
-      const arrOfNews = this.func(this.props.news)
-      return (
-        <div className={style.Cards}>
-          {arrOfNews}
-        </div>
-      )
+    if (this.props.news[0] === 'DATA') {
+      console.log(this.props.isFetching);
+      return<>{this.props.isFetching ? <Preloader/> : null} <PresentationCardsComponent firstLoad={true} /> </>
     }
+    const dataArticlesForRender = this.showCurrentArticles(this.props.news);
+    console.log(this.props.isFetching);
+    return<>{this.props.isFetching ? <Preloader/> : null} <PresentationCardsComponent pagination={this.pagination} dataArticlesForRender={dataArticlesForRender} /></>
   }
+  
 }
 export { Cards };

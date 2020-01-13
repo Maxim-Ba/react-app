@@ -4,5 +4,20 @@
   flex-basis: 1;
   flex-wrap: wrap;
   flex-direction: row;
+  position: relative;
 }
 
+.Cards__selectedPage{
+  font-weight: bold;
+}
+.Cards__unselectedPage{
+  font-weight: normal;
+}
+.Cards__wrapper{
+  height: 20px;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  min-width: 50%;
+  justify-content: space-around;
+}
