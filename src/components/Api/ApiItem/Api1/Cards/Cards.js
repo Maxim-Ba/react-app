@@ -47,7 +47,6 @@ class Cards extends React.Component {
 
   render() {
     if (this.props.news[0] === 'DATA') {
-      console.log(this.props.isFetching);
       return<>{this.props.isFetching ? <Preloader/> : null} <PresentationCardsComponent firstLoad={true} /> </>
     }
     const dataArticlesForRender = this.showCurrentArticles(this.props.news);

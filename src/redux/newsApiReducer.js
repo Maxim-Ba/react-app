@@ -6,7 +6,7 @@ const initialState = {
     data: { data: ['DATA'] },
     link: '/Api/Api1'
   },
-  pageSize: 5,
+  pageSize: 6,
   totalArticlesCount: 0,
   currentPage: 1,
   isFetching: false,
