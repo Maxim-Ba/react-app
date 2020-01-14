@@ -7,7 +7,6 @@ import { ButtonUp } from './components/Buttons/ButtonUp/ButtonUp';
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = this.props.store;
   }
   render() {
     return (
@@ -17,7 +16,6 @@ class App extends React.Component {
           <div className={'app'}>
             <Nav />
             <div className={'right'}>
-              {/* <Main data={this.state} dispatch={store.dispatch.bind(store)} /> */}
               <Main />
             </div>
           </div>
@@ -25,8 +23,6 @@ class App extends React.Component {
         </div>
         <ButtonUp />
       </div>
-
-
     )
   }
 }

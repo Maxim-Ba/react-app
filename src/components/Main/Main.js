@@ -5,21 +5,22 @@ import { Contacts } from '../Contacts/Contacts';
 import { AboutAuthor } from '../AboutAuthor/AboutAuthor';
 import { AboutProject } from '../AboutProject/AboutProject';
 import { Route } from 'react-router-dom';
+import { ContainerCardDescription } from '../Api/ApiItem/Api1/Cards/Card/CardDescription/ContainerCardDescription';
 
 class Main extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
   render() {
     return (
       <div className={style.main}>
-        {/* <Route path={'/'||'/Api'} render={()=><Api props={this.props.data} dispatch={this.props.dispatch}/>} />
-        <Route path='/Contacts' render={()=><Contacts dispatch={this.props.dispatch}/>} /> */}
-        <Route path={'/'||'/Api'} render={()=><Api />} />
-        <Route path='/Contacts' render={()=><Contacts />} />
+        <Route path={'/' || '/Api'} render={() => <Api />} />
+        <Route path='/Contacts' render={() => <Contacts />} />
         <Route path='/AboutAuthor' component={AboutAuthor} />
         <Route path='/AboutProject' component={AboutProject} />
+        <Route path={`/Card`} component={ContainerCardDescription} />
+
       </div>
     )
   }

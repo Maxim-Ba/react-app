@@ -1,6 +1,6 @@
 import { Cards } from './Cards';
 import { connect } from 'react-redux';
-import { actionCreatorChangeurrentPage, actionCreatorToggleIsFeatching } from '../../../../../redux/newsApiReducer';
+import { actionCreatorChangeurrentPage, actionCreatorToggleIsFeatching, actionCreatorsendDataOfCurrentCard } from '../../../../../redux/newsApiReducer';
 
 const mapStateToProps = (state)=>{
   return{
@@ -26,7 +26,7 @@ const mapStateToProps = (state)=>{
 
 
 
-const ContainerCards = connect(mapStateToProps, {setCurrentPage: actionCreatorChangeurrentPage,toggleIsFetching:actionCreatorToggleIsFeatching})(Cards)
+const ContainerCards = connect(mapStateToProps, {setCurrentPage: actionCreatorChangeurrentPage,toggleIsFetching:actionCreatorToggleIsFeatching, sendDataOfCurrentCard: actionCreatorsendDataOfCurrentCard})(Cards)
 
 
 export { ContainerCards };

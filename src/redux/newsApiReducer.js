@@ -10,12 +10,14 @@ const initialState = {
   totalArticlesCount: 0,
   currentPage: 1,
   isFetching: false,
+  currentCard: {},
 }
 
 const SET_NEWS = 'SET_NEWS';
 const CHANGE_VALUE_INPUT = 'CHANGE_VALUE_INPUT';
 const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const CHANGE_CURRENT_CARD = 'CHANGE_CURRENT_CARD';
 
 const actionCreatorSetNews = (news) => ({
   type: SET_NEWS,
@@ -32,6 +34,10 @@ const actionCreatorChangeurrentPage = (page) => ({
 const actionCreatorToggleIsFeatching = (isFetching) => ({
   type: TOGGLE_IS_FETCHING,
   isFetching: isFetching
+})
+const actionCreatorsendDataOfCurrentCard = (data) => ({
+  type: CHANGE_CURRENT_CARD,
+  data: data
 })
 
 const newsApiReducer = (state = initialState, action) => {
@@ -64,12 +70,14 @@ const newsApiReducer = (state = initialState, action) => {
       return stateCopy;
     case CHANGE_CURRENT_PAGE:
       return { ...state, currentPage: action.currentPage };
-      case TOGGLE_IS_FETCHING:
+    case TOGGLE_IS_FETCHING:
       return { ...state, isFetching: action.isFetching };
+    case CHANGE_CURRENT_CARD:
+      return { ...state, currentCard: action.data };
     default:
       return state;
   }
 
 }
 
-export { newsApiReducer, actionCreatorSetNews, actionCreatorInputForm, actionCreatorChangeurrentPage, actionCreatorToggleIsFeatching }
+export { newsApiReducer, actionCreatorSetNews, actionCreatorInputForm, actionCreatorChangeurrentPage, actionCreatorToggleIsFeatching, actionCreatorsendDataOfCurrentCard }

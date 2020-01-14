@@ -3,7 +3,9 @@ import style from './Cards.module.scss'
 import { Card } from './Card/Card';
 
 const PresentationCardsComponent = (props) => {
-  const funcRender = (props) => {
+  console.log(props)
+
+  const funcRender = (props, func) => {
     console.log(props)
     const arr = props.map((element, index) => {
       return <Card
@@ -13,18 +15,20 @@ const PresentationCardsComponent = (props) => {
         description={element.description}
         publishedAt={element.publishedAt}
         url={element.url}
-        key={index} />
+        key={index} 
+        sendDataOfCurrentCard={func}/>
     })
-    console.log(arr)
     return arr
   }
+
+
   if (props.firstLoad === true) {
     return (
       <div className={style.Cards}>
         Введите текст запроса
         </div>)
   } else {
-    const arrOfNews = funcRender(props.dataArticlesForRender)
+    const arrOfNews = funcRender(props.dataArticlesForRender, props.sendDataOfCurrentCard)
     return (
       <div className={style.Cards}>
         {arrOfNews}

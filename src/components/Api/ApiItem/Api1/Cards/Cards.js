@@ -50,8 +50,7 @@ class Cards extends React.Component {
       return<>{this.props.isFetching ? <Preloader/> : null} <PresentationCardsComponent firstLoad={true} /> </>
     }
     const dataArticlesForRender = this.showCurrentArticles(this.props.news);
-    console.log(this.props.isFetching);
-    return<>{this.props.isFetching ? <Preloader/> : null} <PresentationCardsComponent pagination={this.pagination} dataArticlesForRender={dataArticlesForRender} /></>
+    return<>{this.props.isFetching ? <Preloader/> : null} <PresentationCardsComponent pagination={this.pagination} dataArticlesForRender={dataArticlesForRender} sendDataOfCurrentCard={this.props.sendDataOfCurrentCard}/></>
   }
   
 }

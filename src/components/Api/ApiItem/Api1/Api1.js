@@ -12,6 +12,7 @@ class Api1 extends React.Component {
     this.inputOfNews = React.createRef()
     this.getInformation=this.getInformation.bind(this)
   }
+  //пренести запрос в сонтейнерный компонент
   getInformation() {
     const HOURS_IN_DAY = 24;
     const MINUTES_IN_HOUR = 60;
