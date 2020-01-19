@@ -11,20 +11,6 @@ const mapStateToProps = (state)=>{
     isFetching:state.api.isFetching,
   }
 }
-// const mapDispatchToProps = (dispatch)=>{
-//   return{
-    
-//     setCurrentPage: (pageNumber)=>{
-//       const action = actionCreatorChangeurrentPage(pageNumber)
-//       dispatch(action)
-//     },
-//     toggleIsFetching:(isFetching)=>{
-//       dispatch(actionCreatorToggleIsFeatching(isFetching))
-//     }
-//   }
-// }
-
-
 
 const ContainerCards = connect(mapStateToProps, {setCurrentPage: actionCreatorChangeurrentPage,toggleIsFetching:actionCreatorToggleIsFeatching, sendDataOfCurrentCard: actionCreatorsendDataOfCurrentCard})(Cards)
 

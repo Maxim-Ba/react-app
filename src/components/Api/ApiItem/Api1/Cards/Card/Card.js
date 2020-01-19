@@ -22,7 +22,7 @@ class Card extends React.Component {
         <p className={style.Card__description}>{this.props.source}</p>
         <p className={style.Card__description}>{this.props.publishedAt}</p>
         <p className={style.Card__description}>{this.props.url}</p>
-
+    {/* // сделать RouterWith  для CardDescription */}
       </article>
     )
   }

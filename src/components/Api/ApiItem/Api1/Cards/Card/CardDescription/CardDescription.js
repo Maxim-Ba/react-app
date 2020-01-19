@@ -14,9 +14,10 @@ class CardDescription extends React.Component {
         <p className={style.CardDescription__description}>{this.props.news.source}</p>
         <p className={style.CardDescription__description}>{this.props.news.publishedAt}</p>
         <p className={style.CardDescription__description}>{this.props.news.url}</p>
+
       </section>
     )
   }
 }
-
+// сделать кнопку назад
 export { CardDescription };

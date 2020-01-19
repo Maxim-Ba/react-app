@@ -10,6 +10,7 @@ class Cards extends React.Component {
     this.nameOfClass = this.nameOfClass.bind(this)
     this.onCurrentPageChange = this.onCurrentPageChange.bind(this)
     this.showCurrentArticles = this.showCurrentArticles.bind(this)
+    
   }
   onCurrentPageChange(page) {
     return this.props.setCurrentPage(page)
@@ -30,7 +31,7 @@ class Cards extends React.Component {
   pagination() {
     const articlesCount = Math.ceil(this.props.totalArticlesCount / this.props.pageSize)
     const pages = []
-    for (let index = 1; index < articlesCount; index++) {
+    for (let index = 1; index <= articlesCount; index++) {
       pages.push(index)
     }
     return (
@@ -46,6 +47,7 @@ class Cards extends React.Component {
   }
 
   render() {
+    console.log(this.props.news)
     if (this.props.news[0] === 'DATA') {
       return<>{this.props.isFetching ? <Preloader/> : null} <PresentationCardsComponent firstLoad={true} /> </>
     }
