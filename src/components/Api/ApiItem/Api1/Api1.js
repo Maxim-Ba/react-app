@@ -16,23 +16,6 @@ class Api1 extends React.Component {
   //пренести запрос в контейнерный компонент
   getInformation() {
     this.props.getNewsThunk(this.inputOfNews.current.value)
-    // this.props.toggleIsFetching(true)
-    // this.props.actionCreatorQueryInProgress(true)
-    // getInformationApi()
-    //   .then(res => {
-    //     const DATA = res.data.articles
-    //     this.props.toggleIsFetching(false)
-    //     this.props.actionCreatorQueryInProgress(false)
-    //     return this.props.findNews(DATA);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     this.props.toggleIsFetching(false)
-    //     this.props.actionCreatorQueryInProgress(false)
-    //     if (err == 'TypeError: Failed to fetch') {
-    //       err = `Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.`;
-    //     }
-    //   });
   }
   onSubmitForm(event) {
     event.preventDefault();

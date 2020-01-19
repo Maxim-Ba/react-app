@@ -23,15 +23,18 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const CHANGE_CURRENT_CARD = 'CHANGE_CURRENT_CARD';
 const QUERY_IN_PROGRESS = 'QUERY_IN_PROGRESS'
 
-const actionCreatorSetNews = (news) => ({
-  type: SET_NEWS,
-  news: news
-})
+const actionCreatorSetNews = (news) => {
+  return {
+    type: SET_NEWS,
+    news: news
+  }
+}
 const actionCreatorInputForm = (event) => {
   return {
-  type: CHANGE_VALUE_INPUT,
-  value: event.target.value
-}}
+    type: CHANGE_VALUE_INPUT,
+    value: event.target.value
+  }
+}
 const actionCreatorChangeurrentPage = (page) => ({
   type: CHANGE_CURRENT_PAGE,
   currentPage: page
@@ -55,9 +58,15 @@ const getNewsThunk = (value) => {
     dispatch(actionCreatorQueryInProgress(true))
     getInformationApi(value)
       .then(res => {
+        if (res.statusText === 'OK') {
+          return res;
+        }
+      })
+      .then(res => {
         dispatch(actionCreatorToggleIsFeatching(false))
+        dispatch(actionCreatorSetNews(res.data.articles));
         dispatch(actionCreatorQueryInProgress(false))
-        actionCreatorSetNews(res.data.articles);
+        
       })
       .catch((err) => {
         console.log(err);
@@ -73,35 +82,26 @@ const getNewsThunk = (value) => {
 const newsApiReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_NEWS:
-      console.log(action);
-      // const stateNew = {
       return {
         ...state,
         apiOfNews: {
           ...state.apiOfNews,
           data: {
             ...state.apiOfNews.data,
-            data: action.news 
+            data: action.news
           }
         },
         totalArticlesCount: action.news.length
       }
-      // stateNew.apiOfNews.data.data = action.news
-      // stateNew.totalArticlesCount = action.news.length
-      // return stateNew
     case CHANGE_VALUE_INPUT:
-      // const target = action.event.target;
-      // const value = target.value;
-      // const stateCopy = {
       return {
         ...state,
         apiOfNews: { ...state.apiOfNews },
-        input: action.value 
+        input: action.value
       }
-      // stateCopy.apiOfNews = {...state.apiOfNews}
-      // stateCopy.apiOfNews.input = {...state.apiOfNews.input}
-      // stateCopy.apiOfNews.input = value;
-      // return stateCopy;
+    // stateCopy.apiOfNews = {...state.apiOfNews}
+    // stateCopy.apiOfNews.input = {...state.apiOfNews.input}
+    // stateCopy.apiOfNews.input = value;
     case CHANGE_CURRENT_PAGE:
       return { ...state, currentPage: action.currentPage };
     case TOGGLE_IS_FETCHING:
