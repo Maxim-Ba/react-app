@@ -3,18 +3,20 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const mege = require('webpack-merge');
 const common = require('./webpack.config.js');
 const WebpackMd5Hash = require('webpack-md5-hash');
+const path = require('path');
 
 module.exports = mege(common, {
   mode: 'production',
   output: {
-    //   // publicPath: '/',
+      publicPath: '/react-app',
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].js',
     },
   node: {
     fs: 'empty'
   },
-  module: { rules: [
+  module: { 
+    rules: [
     {
       test: /\.js$/,
       exclude: /node_modules/,

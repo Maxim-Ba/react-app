@@ -1,0 +1,20 @@
+.contactsForm{
+  width: 70%;
+}
+.contactsForm__textarea{
+  min-height: 100px;
+  width: 100%;
+
+}
+
+.contactsForm__input{
+  margin-bottom: 20px;
+  
+}
+.contactsForm__err{
+  border: 2px red solid;
+  
+}
+.contactsForm__errorText{
+  color: red;
+}

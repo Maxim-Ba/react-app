@@ -12,7 +12,6 @@ class Contacts extends React.Component {
         <h3>
           Contacts
         </h3>
-        {/* <ContainerContactsForm dispatch={this.props.dispatch}/> */}
         <ContainerContactsForm />
       </section>
     )

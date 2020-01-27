@@ -1,7 +1,6 @@
 import React from 'react';
 import style from './NewsApi.module.scss'
 import { ContainerCards } from './Cards/ContainerCards';
-import { getInformationApi } from '../../../../modules/APIs/NewsApi';
 
 
 class Api1 extends React.Component {
