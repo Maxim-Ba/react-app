@@ -12,7 +12,6 @@ class Api1 extends React.Component {
     this.getInformation=this.getInformation.bind(this)
     
   }
-  //пренести запрос в контейнерный компонент
   getInformation() {
     this.props.getNewsThunk(this.inputOfNews.current.value)
   }

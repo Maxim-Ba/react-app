@@ -23,7 +23,7 @@ class ContactsForm extends React.Component {
   }
 }
 const ReduxForm = reduxForm({
-  form: 'contact'
+  form: 'contacts'
 })(ContactsForm)
 
 const WraperForm = (props)=>{

@@ -21,7 +21,7 @@ const CHANGE_VALUE_INPUT = 'CHANGE_VALUE_INPUT';
 const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const CHANGE_CURRENT_CARD = 'CHANGE_CURRENT_CARD';
-const QUERY_IN_PROGRESS = 'QUERY_IN_PROGRESS'
+const QUERY_IN_PROGRESS = 'QUERY_IN_PROGRESS';
 
 const actionCreatorSetNews = (news) => {
   return {
@@ -99,9 +99,6 @@ const newsApiReducer = (state = initialState, action) => {
         apiOfNews: { ...state.apiOfNews },
         input: action.value
       }
-    // stateCopy.apiOfNews = {...state.apiOfNews}
-    // stateCopy.apiOfNews.input = {...state.apiOfNews.input}
-    // stateCopy.apiOfNews.input = value;
     case CHANGE_CURRENT_PAGE:
       return { ...state, currentPage: action.currentPage };
     case TOGGLE_IS_FETCHING:

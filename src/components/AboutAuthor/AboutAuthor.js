@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './about-author.module.scss';
+import img from '../../vendor/img/author-photo.jpg'
 
 class AboutAuthor extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class AboutAuthor extends React.Component {
         </h3>
         <div className={style.AboutAuthor__container}>
           <picture className={style.AboutAuthor__picture}>
-            <img className={style.AboutAuthor__img} src='/src/vendor/img/author-photo.jpg'></img>{/*сделать нормальный путь к картинке*/}
+            <img className={style.AboutAuthor__img} src={img}></img>{/*сделать нормальный путь к картинке*/}
           </picture>
           <p className={style.AboutAuthor__description}>
             Меня зовут Балашов Максим. Я являюсь фронтэнд разработчиком. Со школы всегда любил увлекаться техникой, информатикой и точными науками, и

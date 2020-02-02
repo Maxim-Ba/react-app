@@ -7,7 +7,7 @@ class ButtonContacts extends React.Component {
 
   render() {
     return (
-      <button className={style.ButtonContacts} type='submit' onClick={this.onSendForm}>
+      <button className={style.ButtonContacts} type='submit'>
         Отправить
       </button>
     )
