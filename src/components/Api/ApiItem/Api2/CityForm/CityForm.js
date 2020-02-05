@@ -15,8 +15,7 @@ const ReduxForm = reduxForm({
 })(Form)
 
 const CityForm = (props)=>{
-  //передать функцию из пропс
-  const onSubmit =(formData)=>{console.log(formData)}
+  const onSubmit =(formData)=>{props.getWetherCityThunk(formData.name)}
   return <ReduxForm onSubmit={onSubmit} />
 }
 export { CityForm };

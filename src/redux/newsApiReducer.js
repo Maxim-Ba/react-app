@@ -86,9 +86,9 @@ const newsApiReducer = (state = initialState, action) => {
         ...state,
         apiOfNews: {
           ...state.apiOfNews,
-          data: {
-            ...state.apiOfNews.data,
-            data: action.news
+            data: {
+              ...state.apiOfNews.data,
+              data: action.news
           }
         },
         totalArticlesCount: action.news.length

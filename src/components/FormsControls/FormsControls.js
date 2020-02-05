@@ -15,7 +15,7 @@ const Input = ({ input, meta, ...props }) => {
   const isError = meta.touched && meta.error;
   return (
     <div className={style.contactsForm}>
-      <textarea className={style.contactsForm__input + ' ' + (isError ? style.contactsForm__err : '')} {...input} {...props} />
+      <input className={style.contactsForm__input + ' ' + (isError ? style.contactsForm__err : '')} {...input} {...props} />
       {isError && <p className={style.contactsForm__errorText}>{meta.error}</p>}
     </div>
   )

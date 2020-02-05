@@ -1,60 +1,40 @@
 import React from 'react';
-import { getIP } from '../../../../modules/APIs/WetherApi';
 import { CityForm } from './CityForm/CityForm';
+import { MainSection } from './MainSection/MainSection';
+import style from './Api2.module.scss'
+import {Preloader} from './Preloader/Preloader' 
 
-class Api2 extends React.Component {
+class Api2 extends React.PureComponent {
   constructor(props) {
     super(props)
-    this.state = {
-      data: {
-        coord: null,
-        weather: null,
-        main: null,
-        wind: null,
-        sys: null
-      }
-    }
+    this.getWetherThunk = this.props.getWetherThunk.bind(this)
   }
 
   componentDidMount() {
-    getIP().then(data => this.setState({ data }))
+    this.getWetherThunk()
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if ((prevProps != this.props) && (prevState.data != this.state.data)) {
+    if ((prevProps !== this.props) || (prevState !==this.state)) {
       return true
     }
     return false
   }
-//заполнить поля
   render() {
+    console.log(this.props.errCity)
     return (
-      <div>
-        <h3>Api по получению погоды в Вашем городе</h3>
-        <section>
-          <p>Температура: , ощущается как </p>
-          <p>Ощущается как </p>
-          <p>Осадки: </p>
-          <p>Давление: </p>
-          <p>Верер: скорость - направление - </p>
-          <p>Восход в: </p>
-          <p>Закат в: </p>
-          <p>Город: </p>
-        </section>
-        <section>
-          <h5>Получить информацию о погоде в другом городе</h5>
-          <CityForm />{/*передать фунцию по обработке поля города*/}
-          <article >
-            <p>Температура: , ощущается как </p>
-            <p>Ощущается как </p>
-            <p>Осадки: </p>
-            <p>Давление: </p>
-            <p>Верер: скорость - направление - </p>
-            <p>Восход в: </p>
-            <p>Закат в: </p>
-            <p>Город: </p>
-          </article>
-        </section>
+      <div className={style.Api2}>
+        <div>
+          <h3>Api по получению погоды в Вашем городе</h3>
+          {this.props.err ? <p>{this.props.err.err}</p> : null }
+          {this.props.isFetchingWether ? <Preloader /> : <MainSection {...this.props.wether}/> }
+        </div>
+        <div>
+          <h3>Получить информацию о погоде в другом городе</h3>
+          {this.props.errCity ? <p>{this.props.errCity.err} </p>: null }
+          {this.props.isFetchingCity ? <Preloader /> : <MainSection {...this.props.wetherInCity}/> }
+          <CityForm getWetherCityThunk={this.props.getWetherCityThunk}/>
+        </div>
       </div>)
   }
 }
