@@ -50,12 +50,13 @@ const actionCreatorChangeCard = (name) => ({
 })
 const actionCreatorSelectCard = (name , index) => ({
   type: SELECT_CARD,
-  name: name
+  name: name,
+  index: index
 })
-const actionCreatorMoveCard = (name, number) => ({
+const actionCreatorMoveCard = (name, index) => ({
   type: MOVE_CARD,
   name: name,
-  number: number
+  index: index
 })
 //_____________________________________
 const actionCreatorAddTodoItem = (name) => ({
@@ -127,12 +128,17 @@ const TodoListReducer = (state = initialState, action) => {
       })
     case CHANGE_CARD:
       return ({
-        ...state, cards:[...state.cards].forEach(item => {if(item.selected){item.name = action.name}})
-      })
+        ...state, cards:[...state.cards].map(item => {
+          if(item.selected){
+            return ({...item ,name: action.name}) 
+          }
+          return {...item}
+      })})
     case SELECT_CARD:
-      
+      console.log(action)
+
       return ({
-        ...state, cards:[...state.cards].map(item => {return (item.name == action.name)? {...item ,selected:true} : {...item, selected : false}})
+        ...state, cards:[...state.cards].map((item, index) => {return ((item.name == action.name) && (index == action.index))? {...item ,selected: true} : {...item, selected : false}})
       })
     case MOVE_CARD:
       return ({})

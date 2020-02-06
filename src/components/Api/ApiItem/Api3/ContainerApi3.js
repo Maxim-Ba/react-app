@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
       const action = actionCreatorChangeCard(name)
       dispatch(action)
     },
-    selectCard : (name) => {
-      const action = actionCreatorSelectCard(name)
+    selectCard : (name, index) => {
+      const action = actionCreatorSelectCard(name, index)
       dispatch(action)
     }
   }
