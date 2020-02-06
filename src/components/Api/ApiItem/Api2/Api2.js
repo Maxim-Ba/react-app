@@ -21,7 +21,6 @@ class Api2 extends React.PureComponent {
     return false
   }
   render() {
-    console.log(this.props.errCity)
     return (
       <div className={style.Api2}>
         <div>
@@ -33,7 +32,7 @@ class Api2 extends React.PureComponent {
           <h3>Получить информацию о погоде в другом городе</h3>
           {this.props.errCity ? <p>{this.props.errCity.err} </p>: null }
           {this.props.isFetchingCity ? <Preloader /> : <MainSection {...this.props.wetherInCity}/> }
-          <CityForm getWetherCityThunk={this.props.getWetherCityThunk}/>
+          <CityForm getWetherCityThunk={this.props.getWetherCityThunk} {...this.props.queryInProgressCity}/>
         </div>
       </div>)
   }

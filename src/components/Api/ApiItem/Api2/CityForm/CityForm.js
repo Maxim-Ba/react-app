@@ -6,7 +6,7 @@ const Form = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <Field placeholder='Название города' name='name' type='text' component={Input}/>
-      <button type='submit'>Отправить запрос</button>
+      <button disabled={props.queryInProgressCity} type='submit'>Отправить запрос</button>
     </form>
   )
 }
@@ -16,6 +16,6 @@ const ReduxForm = reduxForm({
 
 const CityForm = (props)=>{
   const onSubmit =(formData)=>{props.getWetherCityThunk(formData.name)}
-  return <ReduxForm onSubmit={onSubmit} />
+  return <ReduxForm onSubmit={onSubmit} queryInProgressCity={props.queryInProgressCity}/>
 }
 export { CityForm };

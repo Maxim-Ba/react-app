@@ -10,7 +10,7 @@ class Nav extends React.Component {
       <nav className={style.nav}>
         <NavItem title={'News Api'} link={'/Api/Api1'}/>
         <NavItem title={'Wether Api'} link={'/Api/Api2'}/>
-        <NavItem title={'Api'} link={'/Api/Api3'}/>
+        <NavItem title={'TODO List App'} link={'/Api/Api3'}/>
         <NavItem title={'Api'} link={'/Api/Api4'}/>
         <NavItem title={'Api'} link={'/Api/Api5'}/>
       </nav>)

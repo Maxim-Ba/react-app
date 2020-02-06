@@ -4,12 +4,14 @@ import { newsApiReducer } from './newsApiReducer'
 import thunkMiddleware from 'redux-thunk'
 import {reducer as formReducer} from 'redux-form';
 import { wetherReducerApi } from "./wetherApiReducer";
+import { TodoListReducer } from "./TodoListReducer";
 
 const redusers = combineReducers({
   formState: contactsReducer,
   api: newsApiReducer,
   form: formReducer,
   wether: wetherReducerApi,
+  todo: TodoListReducer,
 
 });
 const store = createStore(redusers, applyMiddleware(thunkMiddleware));
