@@ -40,9 +40,8 @@ const actionCreatorAddCard = (name) => ({
   type: ADD_CARD,
   name: name
 })
-const actionCreatorDeleteCard = (name) => ({
+const actionCreatorDeleteCard = () => ({
   type: DELETE_CARD,
-  name: name
 })
 const actionCreatorChangeCard = (name) => ({
   type: CHANGE_CARD,
@@ -123,8 +122,11 @@ const TodoListReducer = (state = initialState, action) => {
         }
       )
     case DELETE_CARD:
+      console.log({
+        ...state,cards:[...state.cards].filter(item => {return (!item.selected)}).map(item=>{return{...item}})
+      })
       return ({
-        ...state,cards:[...state.cards].filter(item => !item.selected)
+        ...state,cards:[...state.cards].filter(item => {return (!item.selected)}).map(item=>item)
       })
     case CHANGE_CARD:
       return ({
@@ -135,8 +137,6 @@ const TodoListReducer = (state = initialState, action) => {
           return {...item}
       })})
     case SELECT_CARD:
-      console.log(action)
-
       return ({
         ...state, cards:[...state.cards].map((item, index) => {return ((item.name == action.name) && (index == action.index))? {...item ,selected: true} : {...item, selected : false}})
       })

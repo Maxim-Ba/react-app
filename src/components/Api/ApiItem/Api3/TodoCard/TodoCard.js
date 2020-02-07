@@ -3,12 +3,7 @@ import style from './TodoCard.module.scss';
 
 const TodoCard = (props) => {
   const [isOpenedRenameCardField, setIsOpenedRenameCardField] = useState(false);
-  // const state = {
-  //   name: props.name,
-  //   isOpenedRenameCardField: false,
-  // }
   const onHandleClick = (e) => {
-    console.log(props)
 
     if (e.currentTarget === e.target) {
       return props.selectCard(props.name, props.index)

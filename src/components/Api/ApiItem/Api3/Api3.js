@@ -1,20 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { TodoCard } from './TodoCard/TodoCard';
 import style from './Api3.module.scss';
 
 const Api3 = (props) => {
-  if (props.arrCards.cards.length == 0) {
-    props.addCard('123')
-  }
-  if (props.arrCards.cards.length == 1) {
-    props.addCard('456')
-  }
-  if (props.arrCards.cards.length == 2) {
-    props.addCard('bnmbnm')
-  }
-  if (props.arrCards.cards.length == 3) {
-    props.addCard('4')
-  }
+  const [isOpenField, setField] = useState(false)
 
   
   const cardsArrayForRender = (arr, func, changeCard ) =>{
@@ -22,15 +11,25 @@ const Api3 = (props) => {
       return arr.map((item, index) => {return <TodoCard index={index} key={index} {...item} selectCard={func} changeCard={changeCard}/> }) ;
     }
   }
-
+  const onpenField = ()=>{
+    return setField(true)
+  }
+  const addCard = (e)=>{
+    console.log(e.currentTarget.value)
+    props.addCard(e.currentTarget.value)
+    return setField(false)
+  }
+  const deleteCard = ()=>{
+    props.deleteCard()
+  }
   return (
     <div >
       <h3>Приложение по сотавлению списка задач</h3>
       <div>
         <section>
-          <p>Добавить колонку</p>
+          {isOpenField ? <input onDoubleClick={addCard}></input> :<p onClick={onpenField}>Добавить колонку</p>}
           <p>Изменить колонку</p>
-          <p>Удалить колонку</p>
+          <p onClick={deleteCard}>Удалить колонку</p>
         </section>
         <div className={style.Api3__wraper}>
         {cardsArrayForRender(props.arrCards.cards, props.selectCard, props.changeCard)}
