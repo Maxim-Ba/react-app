@@ -1,3 +1,5 @@
+import actions from "redux-form/lib/actions";
+
 const initialState = {
   cards: [
     // {
@@ -9,7 +11,6 @@ const initialState = {
     //       time: '',
     //       name: name,
     //       subItems: [],
-    //       opened: false,
     //     }
     //   ],
     // }
@@ -47,7 +48,7 @@ const actionCreatorChangeCard = (name) => ({
   type: CHANGE_CARD,
   name: name
 })
-const actionCreatorSelectCard = (name , index) => ({
+const actionCreatorSelectCard = (name, index) => ({
   type: SELECT_CARD,
   name: name,
   index: index
@@ -58,118 +59,248 @@ const actionCreatorMoveCard = (name, index) => ({
   index: index
 })
 //_____________________________________
-const actionCreatorAddTodoItem = (name) => ({
+const actionCreatorAddTodoItem = (name, index, time, color) => ({
   type: ADD_TODO_ITEM,
-  name: name
+  name: name,
+  index: index,
+  time:time,
+  color:color
 })
-const actionCreatorOpenTodoItem = (name, opened) => ({
+//____________OPEN_____________
+const actionCreatorOpenTodoItem = (name, index, indexTodo, opened) => ({
   type: OPEN_TODO_ITEM,
   name: name,
+  index: index,
+  indexTodo: indexTodo,
   opened: opened
 })
-
-const actionCreatorChangeTodoItem = (name) => ({
+const actionCreatorChangeTodoItem = (name, index, indexTodo) => ({
   type: CHANGE_TODO_ITEM,
-  name: name
+  name: name,
+  index: index,
+  indexTodo: indexTodo
 })
-const actionCreatorDeleteTodoItem = (name) => ({
+const actionCreatorDeleteTodoItem = (name, index, indexTodo) => ({
   type: DELETE_TODO_ITEM,
-  name: name
+  name: name,
+  index: index,
+  indexTodo: indexTodo
 })
-const actionCreatorSetTodoItemTime = (name, time) => ({
+const actionCreatorSetTodoItemTime = (name, time, index, indexTodo) => ({
   type: SET_TODO_ITEM_TIME,
   name: name,
-  time: time
+  time: time,
+  index: index,
+  indexTodo: indexTodo
 })
-const actionCreatorChangeTodoItemTime = (name, time) => ({
+const actionCreatorChangeTodoItemTime = (name, time, index, indexTodo) => ({
   type: CHANGE_TODO_ITEM_TIME,
   name: name,
-  time: time
+  time: time,
+  index: index,
+  indexTodo: indexTodo
 })
-const actionCreatorSetTodoItemColor = (name, color) => ({
+const actionCreatorSetTodoItemColor = (name, color, index, indexTodo) => ({
   type: SET_TODO_ITEM_COLOR,
   name: name,
-  color: color
+  color: color,
+  index: index,
+  indexTodo: indexTodo
 })
-const actionCreatorChangeTodoItemColor = (name, color) => ({
+const actionCreatorChangeTodoItemColor = (name, color, index, indexTodo) => ({
   type: CHANGE_TODO_ITEM_COLOR,
   name: name,
-  color: color
+  color: color,
+  index: index,
+  indexTodo: indexTodo
 })
 //_____________________________________
-const actionCreatorAddTodoSubItem = (name) => ({
-  type: ADD_TODO_SUBITEM,
-  name: name,
-})
-const actionCreatorChangeTodoSubItem = (name) => ({
-  type: CHANGE_TODO_SUBITEM,
-  name: name,
-})
-const actionCreatorDeleteTodoSubItem = (name) => ({
-  type: DELETE_TODO_SUBITEM,
-  name: name,
-})
+
 
 const TodoListReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CARD:
       return ({
-        ...state, cards:[...state.cards, {
-          name:action.name,
+        ...state, cards: [...state.cards, {
+          name: action.name,
           selected: false,
           todoItems: []
-          }]
-        }
+        }]
+      }
       )
     case DELETE_CARD:
-      console.log({
-        ...state,cards:[...state.cards].filter(item => {return (!item.selected)}).map(item=>{return{...item}})
-      })
       return ({
-        ...state,cards:[...state.cards].filter(item => {return (!item.selected)}).map(item=>item)
+        ...state, cards: [...state.cards].filter(item => { return (!item.selected) }).map(item => item)
       })
     case CHANGE_CARD:
       return ({
-        ...state, cards:[...state.cards].map(item => {
-          if(item.selected){
-            return ({...item ,name: action.name}) 
+        ...state, cards: [...state.cards].map(item => {
+          if (item.selected) {
+            return ({ ...item, name: action.name })
           }
-          return {...item}
-      })})
+          return { ...item }
+        })
+      })
     case SELECT_CARD:
       return ({
-        ...state, cards:[...state.cards].map((item, index) => {return ((item.name == action.name) && (index == action.index))? {...item ,selected: true} : {...item, selected : false}})
+        ...state, cards: [...state.cards].map((item, index) => { return ((item.name == action.name) && (index == action.index)) ? { ...item, selected: true } : { ...item, selected: false } })
       })
     case MOVE_CARD:
       return ({})
     case ADD_TODO_ITEM:
-      return ({})
+      return ({
+        ...state, cards: [...state.cards]
+          .map((item, index) => {
+            return ((index == action.index))
+              ? {
+                ...item, todoItems: [
+                  ...item.todoItems, {
+                    color: action.color,
+                    time: action.time,
+                    name: action.name,
+                    subItems: [],
+                    opened: false,
+                  }]
+              }
+              : item 
+          })
+      }
+      )
     case OPEN_TODO_ITEM:
-      return ({})
+      return ({
+        ...state, cards: [...state.cards]
+          .map((item, index) => {
+            return (index == action.index)
+              ? {
+                ...item, todoItems: [...item.todoItems]
+                  .map((jItem, jIndex) => {
+                    if (jIndex == action.indexTodo) {
+                      return ({ ...jItem, opened: action.opened })
+                    }
+                    return jItem 
+                  })
+              }
+              : item 
+          })
+      })
     case CHANGE_TODO_ITEM:
-      return ({})
+      return ({
+        ...state, cards: [...state.cards]
+          .map((item, index) => {
+            return ((index == action.index))
+              ? {
+                ...item, todoItems: [...item.todoItems]
+                  .map((jItem, jIndex) => {
+                    if (jIndex == action.indexTodo) {
+                      return ({ ...jItem, name: action.name })
+                    }
+                    return jItem 
+                  })
+              }
+              : item
+          })
+      })
     case DELETE_TODO_ITEM:
-      return ({})
+      return ({
+        ...state, cards: [...state.cards]
+          .map((item, index) => {
+            return ((index == action.index))
+              ? {
+                ...item, todoItems: [...item.todoItems]
+                  .filter((jItem, jIndex)=>{return jIndex !== action.indexTodo})
+                  .map(a => a)
+              }
+              : item
+          })
+      })
     case SET_TODO_ITEM_TIME:
-      return ({})
+      return ({
+        ...state, cards: [...state.cards]
+          .map((item, index) => {
+            return ((index == action.index))
+              ? {
+                ...item, todoItems: [...item.todoItems]
+                  .map((jItem, jIndex) => {
+                    if (jIndex == action.indexTodo) {
+                      return ({ ...jItem, time: action.time })
+                    }
+                    return jItem 
+                  })
+              }
+              : item
+          })
+      })
     case CHANGE_TODO_ITEM_TIME:
-      return ({})
+      return ({
+        ...state, cards: [...state.cards]
+          .map((item, index) => {
+            return ((index == action.index))
+              ? {
+                ...item, todoItems: [...item.todoItems]
+                  .map((jItem, jIndex) => {
+                    if (jIndex == action.indexTodo) {
+                      return ({ ...jItem, time: action.time })
+                    }
+                    return jItem 
+                  })
+              }
+              : item
+          })
+      })
     case SET_TODO_ITEM_COLOR:
-      return ({})
+      return ({
+        ...state, cards: [...state.cards]
+          .map((item, index) => {
+            return ((index == action.index))
+              ? {
+                ...item, todoItems: [...item.todoItems]
+                  .map((jItem, jIndex) => {
+                    if (jIndex == action.indexTodo) {
+                      return ({ ...jItem, color: action.color })
+                    }
+                    return jItem 
+                  })
+              }
+              : item
+          })
+      })
     case CHANGE_TODO_ITEM_COLOR:
-      return ({})
-    case ADD_TODO_SUBITEM:
-      return ({})
-    case CHANGE_TODO_SUBITEM:
-      return ({})
-    case DELETE_TODO_SUBITEM:
-      return ({})
+      return ({
+        ...state, cards: [...state.cards]
+          .map((item, index) => {
+            return ((index == action.index))
+              ? {
+                ...item, todoItems: [...item.todoItems]
+                  .map((jItem, jIndex) => {
+                    if (jIndex == action.indexTodo) {
+                      return ({ ...jItem, color: action.color })
+                    }
+                    return jItem 
+                  })
+              }
+              : item
+          })
+      })
     default:
       return state;
   }
 }
 
 
-export {TodoListReducer, actionCreatorAddCard, actionCreatorDeleteCard, actionCreatorChangeCard, actionCreatorSelectCard}
+export {
+  TodoListReducer,
+  actionCreatorAddCard,
+  actionCreatorDeleteCard,
+  actionCreatorChangeCard,
+  actionCreatorSelectCard,
+  actionCreatorAddTodoItem,
+  actionCreatorOpenTodoItem,
+  actionCreatorChangeTodoItem,
+  actionCreatorDeleteTodoItem,
+  actionCreatorSetTodoItemTime,
+  actionCreatorChangeTodoItemTime,
+  actionCreatorSetTodoItemColor,
+  actionCreatorChangeTodoItemColor
+}
 
 

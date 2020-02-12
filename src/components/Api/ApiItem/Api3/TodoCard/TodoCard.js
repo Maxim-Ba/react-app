@@ -1,5 +1,8 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import style from './TodoCard.module.scss';
+import { FormCard } from './FormCard/FormCard';
+import { TodoItemList } from './TodoItemList/TodoItemList';
+
 
 const TodoCard = (props) => {
   const [isOpenedRenameCardField, setIsOpenedRenameCardField] = useState(false);
@@ -9,34 +12,32 @@ const TodoCard = (props) => {
       return props.selectCard(props.name, props.index)
     }
   }
-  const renameCardField = React.createRef();
-  const renameCard = () => {
+  const renameCard = (value) => {
     props.selectCard(props.name, props.index)
-    props.changeCard(renameCardField.current.value)
+    props.changeCard(value)
     return closeRenameCardField()
-    
   }
-  const openedRenameCardField =()=>{
+  const openedRenameCardField = () => {
     return setIsOpenedRenameCardField(true)
   }
-  const closeRenameCardField = ()=>{
+  const closeRenameCardField = () => {
     return setIsOpenedRenameCardField(false)
   }
-  // isOpenedRenameCardField сделать форму, и убрать createRef
   return (
     <section onClick={onHandleClick} className={props.selected ? (style.TodoCard + ' ' + style.TodoCard__selected) : style.TodoCard}>
       {
         isOpenedRenameCardField
-          ? [<input key={'field'} ref={renameCardField} onSubmit={renameCard}></input>,
-              <button key={'Close'} onClick={closeRenameCardField}>Close</button>,
-              <button key={'Input'} onClick={renameCard}>Input</button>]
-          : [<header key={'header'} onDoubleClick={openedRenameCardField}>{props.name}</header>,
-              <button key={'button'} onClick={openedRenameCardField}>Rename</button>]
+          ? <FormCard renameCard={renameCard} closeRenameCardField={closeRenameCardField} />
+          : <div className={style.TodoCard__topOfHead}>
+              <header>{props.name}</header>
+              <button  onClick={openedRenameCardField}>Rename</button>
+            </div>
       }
-      
       <div>
-        <p>
-        </p>
+        <TodoItemList
+          addTodo={props.addTodo}
+          todoItemList={props.todoItems}
+          index={props.index}/>
       </div>
     </section>
 

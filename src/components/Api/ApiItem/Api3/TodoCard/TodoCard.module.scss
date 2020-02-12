@@ -7,3 +7,8 @@
 .TodoCard__selected{
   border:3px solid blue;
 }
+.TodoCard__topOfHead{
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 10px 5px;
+}

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Api3 } from './Api3';
-import { actionCreatorAddCard, actionCreatorDeleteCard, actionCreatorChangeCard, actionCreatorSelectCard} from '../../../../redux/TodoListReducer';
+import { actionCreatorAddCard, actionCreatorDeleteCard, actionCreatorChangeCard, actionCreatorSelectCard, actionCreatorAddTodoItem, actionCreatorOpenTodoItem} from '../../../../redux/TodoListReducer';
 
 const mapStateToProps = (state) => ({
   arrCards : state.todo
@@ -23,7 +23,11 @@ const mapDispatchToProps = (dispatch) => {
     selectCard : (name, index) => {
       const action = actionCreatorSelectCard(name, index)
       dispatch(action)
-    }
+    },
+    addTodo: (name, index, time, color) =>{
+      dispatch(actionCreatorAddTodoItem(name, index, time, color))
+    },
+
   }
 }
   const ContainerApi3 = connect(mapStateToProps, mapDispatchToProps)(Api3)
