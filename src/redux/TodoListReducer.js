@@ -36,6 +36,8 @@ const CHANGE_TODO_ITEM_COLOR = 'CHANGE_TODO_ITEM_COLOR';
 const ADD_TODO_SUBITEM = 'ADD_TODO_SUBITEM';
 const CHANGE_TODO_SUBITEM = 'CHANGE_TODO_SUBITEM';
 const DELETE_TODO_SUBITEM = 'DELETE_TODO_SUBITEM';
+//DND
+const CHANGE_ORDER_OF_ARRAY ='CHANGE_ORDER_OF_ARRAY'
 
 const actionCreatorAddCard = (name) => ({
   type: ADD_CARD,
@@ -113,6 +115,10 @@ const actionCreatorChangeTodoItemColor = (name, color, index, indexTodo) => ({
   color: color,
   index: index,
   indexTodo: indexTodo
+})
+const actionCreatorNewOrderCards = (newArray) =>({
+  type: CHANGE_ORDER_OF_ARRAY,
+  newArray: newArray
 })
 //_____________________________________
 
@@ -281,6 +287,12 @@ const TodoListReducer = (state = initialState, action) => {
               : item
           })
       })
+      case CHANGE_ORDER_OF_ARRAY:
+        return ({
+          ...state, cards: [
+            ...action.newArray
+          ]
+        })
     default:
       return state;
   }
@@ -300,7 +312,8 @@ export {
   actionCreatorSetTodoItemTime,
   actionCreatorChangeTodoItemTime,
   actionCreatorSetTodoItemColor,
-  actionCreatorChangeTodoItemColor
+  actionCreatorChangeTodoItemColor,
+  actionCreatorNewOrderCards
 }
 
 

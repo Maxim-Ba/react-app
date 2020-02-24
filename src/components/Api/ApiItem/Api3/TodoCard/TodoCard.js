@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import style from './TodoCard.module.scss';
 import { FormCard } from './FormCard/FormCard';
 import { TodoItemList } from './TodoItemList/TodoItemList';
-
+import { Draggable } from 'react-beautiful-dnd';
 
 const TodoCard = (props) => {
   const [isOpenedRenameCardField, setIsOpenedRenameCardField] = useState(false);
@@ -24,22 +24,35 @@ const TodoCard = (props) => {
     return setIsOpenedRenameCardField(false)
   }
   return (
-    <section onClick={onHandleClick} className={props.selected ? (style.TodoCard + ' ' + style.TodoCard__selected) : style.TodoCard}>
-      {
-        isOpenedRenameCardField
-          ? <FormCard renameCard={renameCard} closeRenameCardField={closeRenameCardField} />
-          : <div className={style.TodoCard__topOfHead}>
-              <header>{props.name}</header>
-              <button  onClick={openedRenameCardField}>Rename</button>
-            </div>
-      }
-      <div>
-        <TodoItemList
-          addTodo={props.addTodo}
-          todoItemList={props.todoItems}
-          index={props.index}/>
-      </div>
-    </section>
+    <Draggable
+      draggableId={props.name}
+      index={props.index}
+    >
+      {provided => (
+        <section
+          onClick={onHandleClick}
+          className={props.selected ? (style.TodoCard + ' ' + style.TodoCard__selected) : style.TodoCard}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+        >
+          {
+            isOpenedRenameCardField
+              ? <FormCard renameCard={renameCard} closeRenameCardField={closeRenameCardField} />
+              : <div className={style.TodoCard__topOfHead}>
+                <header>{props.name}</header>
+                <button onClick={openedRenameCardField}>Rename</button>
+              </div>
+          }
+          <div>
+            <TodoItemList
+              addTodo={props.addTodo}
+              todoItemList={props.todoItems}
+              index={props.index} />
+          </div>
+        </section>
+      )}
+    </Draggable>
 
   )
 }

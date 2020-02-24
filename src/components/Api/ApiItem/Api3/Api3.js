@@ -12,6 +12,7 @@ const Api3 = (props) => {
     if (arr.length !== 0) {
       return arr.map((item, index) => {
         return <TodoCard
+          id={index}
           index={index}
           key={index}
           {...item}
@@ -38,6 +39,24 @@ const Api3 = (props) => {
     props.deleteCard()
   }
   const onDragEnd = (result) => {
+    const {destination, source, draggableId} = result
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index  
+    ) {
+      return;
+    }
+    const newCard = props.arrCards.cards.map(item=>{
+      console.log(item)
+      return item
+    });
+    console.log(newCard)
+    newCard.splice(source.index, 1)
+    newCard.splice(destination.index, 0, draggableId)
+    props.changeOrderCards(newCard)
 
   }
   return (
@@ -51,23 +70,25 @@ const Api3 = (props) => {
         <h3>Приложение по сотавлению списка задач</h3>
         <div>
           <HeaderSection isOpenField={isOpenField} addCard={addCard} onpenField={onpenField} closeField={closeField} deleteCard={deleteCard} />
-          
-            <Droppable droppableId={'1'}>
-              {provided => (
-                <div className={style.Api3__wraper} {...provided.dropableProps} ref={provided.innerRef}>
-                  {cardsArrayForRender(
-                    props.arrCards.cards,
-                    props.selectCard,
-                    props.changeCard,
-                    props.addTodo,
-                    props.setTodoItemColor,
-                    props.changeTodo,
-                    props.openTodo,
-                  )}
-                </div>
-              )}
-
-            
+          <Droppable droppableId={'one'}>
+            {provided => (
+              <div
+                className={style.Api3__wraper}
+                {...provided.dropableProps}
+                ref={provided.innerRef}
+              >
+                {cardsArrayForRender(
+                  props.arrCards.cards,
+                  props.selectCard,
+                  props.changeCard,
+                  props.addTodo,
+                  props.setTodoItemColor,
+                  props.changeTodo,
+                  props.openTodo,
+                )}
+                {provided.placeholder}
+              </div>
+            )}
           </Droppable>
         </div>
       </div>
